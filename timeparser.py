@@ -58,8 +58,8 @@ for module_name, module in modules.items():
 sorted_times_desc = sorted([(module_name, module_data['time']) for module_name, module_data in modules.items()],
                            key=lambda x: x[1], reverse=True)
 print('Average time per module: %f' % (sum(map(lambda x: x['time'], modules.values())) / len(modules.values())))
-
 # pprint(sorted_times_desc)
+
 plugin_tuples = [(stage['plugin'], get_duration(stage['time']))
                  for module in modules.values()
                  for stage in module['stages']]
@@ -73,5 +73,3 @@ def reduce_plugin_tuples(acc: Dict, val: Tuple) -> Dict:
 plugin_times_desc = sorted(reduce(reduce_plugin_tuples, plugin_tuples, {}).items(), key=lambda x: x[1], reverse=True)
 
 pprint(plugin_times_desc)
-
-
